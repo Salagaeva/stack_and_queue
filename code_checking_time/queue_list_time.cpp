@@ -2,7 +2,7 @@
 #include <list>
 #include <ctime>
 
-const int array_size = 10000;
+const int array_size = 1000;
 
 template <typename T>
 struct queue_list {
@@ -12,7 +12,8 @@ struct queue_list {
         if (storage.size() >= array_size) {
             // Если размер очереди достиг предела, то не добавляем новый элемент
             std::cout << "Очередь переполнена, нельзя добавить элемент" << std::endl;
-        } else {
+        }
+        else {
             storage.push_back(element);
         }
     }
@@ -22,7 +23,8 @@ struct queue_list {
             // Если очередь пуста, сообщаем об этом и возвращаем дефолтное значение элемента
             std::cout << "Очередь пуста, нельзя извлечь элементы" << std::endl;
             return T();
-        } else {
+        }
+        else {
             // Извлекаем элемент из начала очереди и возвращаем его
             T front_element = storage.front();
             storage.pop_front();
@@ -31,19 +33,36 @@ struct queue_list {
     }
 };
 
+
 int main() {    
     queue_list<int> my_queue;
 
-    // Добавляем элементы в очередь
-    my_queue.add_element(50);
-    my_queue.add_element(9);
-    my_queue.add_element(15);
+    // Тест скорости добавления элементов
+    clock_t start = clock();
+    for (int i = 0; i < array_size; i++) {
+        my_queue.add_element(i);
+    }
+    clock_t end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    std::cout << "Время, затраченное на добавление " << array_size << " элементов: " << time_taken << " секунд" << std::endl;
 
-    // Извлекаем элементы из очереди
-    std::cout << my_queue.get_element() << std::endl;
-    std::cout << my_queue.get_element() << std::endl;
-    std::cout << my_queue.get_element() << std::endl;
+    // Очистим очередь
+    my_queue = queue_list<int>();
 
+    // Тест скорости извлечения элементов
+    for (int i = 0; i < array_size; i++) {
+        my_queue.add_element(i);
+    }
+
+    start = clock();
+    for (int i = 0; i < array_size; i++) {
+        my_queue.get_element();
+    }
+    end = clock();
+    time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    std::cout << "Время, затраченное на извлечения " << array_size << " элементов: " << time_taken << " секунд" << std::endl;
+
+    
+    
     return 0;
 }
-

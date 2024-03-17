@@ -1,100 +1,50 @@
 #include <iostream>
-//тут базово задаю типо размерчик масивчику
+
 const int array_size = 10000;
-//Класс QueueArray представляет собой очередь, реализованную с использованием массива.
-class Queue 
-{
-    //Модификатор private (закрытый) указывает на то, что свойства и методы доступны только внутри класса.
-    private:
-    int first, last, size;
-    int arr[array_size];
-    //Модификатор public (общий) указывает на то, что свойства и методы доступны без ограничений.
-    public:
-    Queue() 
-    {
-    first = 0;
-    last = -1;
-    size = 0;
-    }
-    //IsEmpty — проверяет, пуста ли очередь.
-    bool isEmpty() {
-        return size == 0;
-}
-//IsFull — проверяет, заполнена ли очередь.
-bool isFull() 
-{
-    return size == array_size;
-}
-//Enqueue — позволяет добавить элемент в конец очереди. 
-//тут проверяется заполнена ли очеред и мы увеличиваем last на 1, 
-//чтобы указать на новую позицию, куда будет добавлен новый элемент.
-//При этом используется операция % array_size для обеспечения цикличности добавления элементов.
-void enqueue(int meaning) 
-{
-    if (isFull()) 
-    {
-        std::cout << "Очередь заполнена" << std::endl;
-        return;
+
+template <typename T>
+struct queue_mass {
+    T storage[array_size];
+    int front_index;
+    int back_index;
+
+    // Конструктор инициализирует индексы front_index и back_index
+    queue_mass() : front_index(0), back_index(-1) {}
+
+    // Добавление элемента в очередь
+    void add_element(T element) {
+        // Проверяем, не полна ли очередь
+        if (back_index == array_size - 1) {
+            std::cout << "Queue is full" << std::endl;
+        } else {
+            // Увеличиваем back_index и добавляем элемент
+            storage[++back_index] = element;
+        }
     }
 
-    last = (last + 1) % array_size;
-    //добавляется значение meaning в очередь по индексу last.
-    arr[last] = meaning;
-    //size увеличивается на 1, чтобы отслеживать общее количество элементов в очереди.
-    size++;
-}
-//dequeue - это наоборот удаляет
-//Переменная first указывает на индекс первого элемента в очереди. 
-void dequeue() 
-{
-    if (isEmpty()) 
-    {
-        std::cout << "Очередь пуста" << std::endl;
-        return;
+    // Получение элемента из очереди
+    T get_element() {
+        // Проверяем, не пуста ли очередь
+        if (front_index > back_index) {
+            std::cout << "Queue is empty" << std::endl;
+            return T();
+        } else {
+            // Возвращаем элемент и увеличиваем front_index
+            return storage[front_index++];
+        }
     }
-    //увеличиваю first на 1, чтобы указать на следующий элемент, который станет первым после 
-    //извлечения текущего первого элемента.
-    //% array_size используется для обеспечения цикличности индексов в массиве.
-    first = (first + 1) % array_size;
-    //После этого уменьшается значение переменной size на 1, чтобы отразить удаление одного элемента из очереди.
-    size--;
-}
-
-int theFirstMeaning() 
-{
-    if (isEmpty()) 
-    //В зависимости от результата этой проверки функция либо возвращает -1, 
-    //если условие истинно, либо возвращает значение по индексу first в массиве arr, если условие ложно.
-    {
-        return -1;
-    }
-
-    return arr[first];
-}
-
 };
 
-int main() 
-{
-Queue q;
-q.enqueue(35);
-q.enqueue(5);
-q.enqueue(10);
-q.enqueue(15);
-q.enqueue(25);
-q.enqueue(35);
+int main() {    
+    queue_mass<int> my_queue;
+    
+    my_queue.add_element(50);
+    my_queue.add_element(9);
+    my_queue.add_element(15);
 
-std::cout << q.theFirstMeaning() << std::endl;
-q.dequeue();
-std::cout << q.theFirstMeaning() << std::endl;
-q.dequeue();
-std::cout << q.theFirstMeaning() << std::endl;
+    std::cout << my_queue.get_element() << std::endl;
+    std::cout << my_queue.get_element() << std::endl;
+    std::cout << my_queue.get_element() << std::endl;
 
-return 0;
+    return 0;
 }
-
-
-
-
-
-
