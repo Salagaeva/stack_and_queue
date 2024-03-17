@@ -16,10 +16,10 @@
 
 |абстракция|детали абстракции|
 |--------|--------|
-|![stack_hop](./pictures/stack_hop.png)|hop - указатель на последний добавленый в стек элемент|
-|![queue](./pictures/stack_list.png)|top_element - указатель на последний добавленный в очередь элемент|
-|![stack](./pictures/queue_mass.png)|back_index - указатель на последний вошедший элемент в стек, а front_index - на первый вошедший элемент|
-|![queue](./pictures/queue_list.png)|storage.back() - указатель на последний вошедший элемент в очередь, а storage.front() - на первый вошедший элемент|
+|![stack_mass](./pictures/stack_hop.png)|hop - указатель на последний добавленый в стек элемент|
+|![stack_list](./pictures/stack_list.png)|top_element - указатель на последний добавленный в очередь элемент|
+|![queue_mass](./pictures/queue_mass.png)|back_index - указатель на последний вошедший элемент в стек, а front_index - на первый вошедший элемент|
+|![queue_list](./pictures/queue_list.png)|storage.back() - указатель на последний вошедший элемент в очередь, а storage.front() - на первый вошедший элемент|
 
 ## Реализация на С++
 ### Реализованно с помощью структур
