@@ -2,7 +2,7 @@
 #include <list>
 #include <ctime>
 
-const int array_size = 1000;
+const int array_size = 100;
 
 template <typename T>
 struct queue_list {
@@ -44,7 +44,7 @@ int main() {
     }
     clock_t end = clock();
     double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    std::cout << "Время, затраченное на добавление " << array_size << " элементов: " << time_taken << " секунд" << std::endl;
+    std::cout << "Время, затраченное на добавление " << array_size << " элементов: " << std::fixed << time_taken << " секунд" << std::endl;
 
     // Очистим очередь
     my_queue = queue_list<int>();
@@ -60,7 +60,7 @@ int main() {
     }
     end = clock();
     time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    std::cout << "Время, затраченное на извлечения " << array_size << " элементов: " << time_taken << " секунд" << std::endl;
+    std::cout << "Время, затраченное на извлечения " << array_size << " элементов: " << std::fixed << time_taken << " секунд" << std::endl;
 
     
     
