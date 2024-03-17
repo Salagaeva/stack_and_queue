@@ -4,7 +4,7 @@
 #include <ctime> 
 #include <chrono> 
  
-const int array_size = 10000; 
+const int array_size = 1000; 
  
 template <typename T> 
 struct stack_mass { 
@@ -56,7 +56,7 @@ int main() {
     } 
     auto end = std::chrono::high_resolution_clock::now(); 
     std::chrono::duration<double> time_taken = end - start; 
-    std::cout << "Время, затраченное на добавление " << array_size << " элементов: " << time_taken.count() << " секунд" << std::endl; 
+    std::cout << "Время, затраченное на добавление " << array_size << " элементов: "<< std::fixed << time_taken.count() << " секунд" << std::endl; 
  
     // Очистим стек 
     my_stack = stack_mass<int>(); 
@@ -72,8 +72,7 @@ int main() {
     } 
     end = std::chrono::high_resolution_clock::now(); 
     time_taken = end - start; 
-    std::cout << "Время, затраченное на извлечения " << array_size << " элементов: " << time_taken.count() << " секунд" << std::endl; 
+    std::cout << "Время, затраченное на извлечения " << array_size << " элементов: " << std::fixed << time_taken.count() << " секунд" << std::endl; 
  
     return 0; 
 }
-
