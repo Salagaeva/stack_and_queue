@@ -31,4 +31,13 @@
 |очередь на массивах|![queue_mass_pole_struct](./pictures/queue_mass_pole_struct.png)|![queue_mass_funct_add](./pictures/queue_mass_funct_add.png)|![queue_mass_funct_ex](./pictures/queue_mass_funct_ex.png)|
 |очередь на списках|![queue_list_pole_struct](./pictures/queue_list_pole_struct.png)|![queue_list_funct_add](./pictures/queue_list_funct_add.png)|![queue_list_funct_ex](./pictures/queue_list_funct_ex.jpg)|
 
+## Заключение 
+### Представленно табличное сравнение добавление и извлечения элементов 
+
+|структура данных|добавление 100 элементов|извлечение 100 элементов|добавление 1000 элементов|извлечение 1000 элементов|
+|--------|--------|--------|--------|--------|
+|стек на массивах|||||
+|стек на списках|||||
+|очередь на массивах|||||
+|очередь на списках|||||
 
